@@ -1,0 +1,23 @@
+div{
+    margin-bottom: 5px;
+   width: 220px;
+    border-radius: 10px;
+    align-items: center;
+    background: #f6eee3;
+    padding: 10px;
+
+    
+}
+
+
+input{
+   border: hidden;
+   border-radius: 5px;
+}
+p{
+    font-size:smaller;
+}
+
+.container{
+   
+}
