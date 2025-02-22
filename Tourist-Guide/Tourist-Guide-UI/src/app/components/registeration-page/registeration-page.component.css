@@ -18,6 +18,9 @@ p{
     font-size:smaller;
 }
 
+.input-error{
+color: red;
+}
 .container{
    
 }
