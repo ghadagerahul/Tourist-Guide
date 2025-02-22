@@ -1,6 +1,6 @@
 <h3>Registeration Page</h3>
 
-<div class="container">
+<!-- <div class="container">
 
     <form action="" [formGroup]="registrationForm">
         <div>
@@ -36,6 +36,38 @@
     </form>
 
     <p>If Existing user Please <a href=""> Login here</a> </p>
+</div> -->
 
+<!-- =============================================== -->
+ <!-- ============================================== -->
 
+<div class="container">
+    <form action="" class="form">
+
+        <div class="form-inputs"><label for="">First Name <span class="text-danger">*</span> :</label><br><input type="text" placeholder="Enter First Name here"
+                name="firstName" [(ngModel)]="registrationForm1.firstName" #fname="ngModel" required minlength="3"><br>
+            <div class="text-danger">
+                <span *ngIf="fname.errors?.['minlength'] && fname.touched ">lenght minimum 3.</span>
+                <span *ngIf="fname.touched && fname.errors?.['required'] ">First Name is Required.</span>
+            </div>
+        </div>
+
+        <div class="form-inputs"><label for="">Last Name:</label><br><input type="text"
+                placeholder="Enter Last Name here" name="lastName" [(ngModel)]="registrationForm1.lastName"><br></div>
+
+        <div class="form-inputs"><label for="">Email:</label><br><input type="email" placeholder="Enter Email Id here"
+                name="email" [(ngModel)]="registrationForm1.email"><br></div>
+
+        <div class="form-inputs"><label for="">Mobile Number</label><br><input type="number"
+                placeholder="Enter mobile number here" name="mobileNo" [(ngModel)]="registrationForm1.mobileNo"><br>
+        </div>
+
+        <div class="form-inputs"><label for="">UserName:</label><br><input type="text" placeholder="Enter username"
+                name="userName" [(ngModel)]="registrationForm1.userName"><br></div>
+
+        <div class="form-inputs"><label for="">Password:</label><br><input type="password" placeholder="Enter password"
+                name="password" [(ngModel)]="registrationForm1.password"><br></div>
+
+        <button type="submit" (click)="onSubmitData()">Register</button>
+    </form>
 </div>
