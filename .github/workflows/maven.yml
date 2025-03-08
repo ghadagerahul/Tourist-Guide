@@ -4,10 +4,10 @@ name: Maven CI/CD Pipeline
 on:
   push:
     branches:
-      -tourist_app_development
+      - main
   pull_request:
     branches:
-      - tourist_app_development
+      - main
   workflow_dispatch:
 
 jobs:
@@ -39,7 +39,7 @@ jobs:
       run: mvn package
 
     - name: Upload WAR artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: tourist-guide-war
         path: target/*.war
