@@ -33,17 +33,13 @@ jobs:
           ${{ runner.os }}-maven-
 
     - name: Build with Maven
-
-      working-directory: ./Tourist-Guide/Tourist-Guide
-
-      run: mvn clean install
+      working-directory: Tourist-Guide/Tourist-Guide
+       run: mvn clean install
 
 
     - name: Package WAR file
-
-      working-directory: ./Tourist-Guide/Tourist-Guide
-
-      run: mvn package
+      working-directory: Tourist-Guide/Tourist-Guide
+       run: mvn package
 
 
     - name: Upload WAR artifact
