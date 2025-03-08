@@ -1,46 +1,127 @@
+# Update the GitHub Actions workflow file to set the working directory directly
+
+
+
+# Define the updated contents of the .yml file with the working directory set for Maven commands
+
+working_directory_yaml_content = """
 
 name: Maven CI/CD Pipeline
 
+
+
 on:
+
   push:
+
     branches:
+
       - main
+
   pull_request:
+
     branches:
+
       - main
+
   workflow_dispatch:
 
+
+
 jobs:
+
   build:
+
     runs-on: ubuntu-latest
 
+
+
     steps:
+
     - name: Checkout source code
+
       uses: actions/checkout@v3
 
+
+
+    - name: List directory structure
+
+      run: ls -R
+
+
+
     - name: Set up JDK 17
+
       uses: actions/setup-java@v3
+
       with:
+
         distribution: 'temurin'
+
         java-version: '17'
 
+
+
     - name: Cache Maven packages
+
       uses: actions/cache@v3
+
       with:
+
         path: ~/.m2/repository
+
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+
         restore-keys: |
+
           ${{ runner.os }}-maven-
 
+
+
     - name: Build with Maven
-      run: mvn -f Tourist-Guide/Tourist-Guide/pom.xml clean install
+
+      working-directory: ./Tourist-Guide/Tourist-Guide
+
+      run: mvn clean install
+
+
 
     - name: Package WAR file
-      run: mvn -f Tourist-Guide/Tourist-Guide/pom.xml package
+
+      working-directory: ./Tourist-Guide/Tourist-Guide
+
+      run: mvn package
+
+
 
     - name: Upload WAR artifact
+
       uses: actions/upload-artifact@v4
+
       with:
+
         name: tourist-guide-war
+
         path: Tourist-Guide/Tourist-Guide/target/*.war
-        
+
+"""
+
+
+
+# Define the file path to save the updated .yml file
+
+working_directory_file_path = '/mnt/data/maven-ci-cd-pipeline.yml'
+
+
+
+# Write the updated content to a .yml file
+
+with open(working_directory_file_path, 'w') as file:
+
+    file.write(working_directory_yaml_content)
+
+
+
+# Provide the file path for download
+
+working_directory_file_path
