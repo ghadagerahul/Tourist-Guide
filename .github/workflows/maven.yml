@@ -4,10 +4,11 @@ name: Maven CI/CD Pipeline
 on:
   push:
     branches:
-      - main
+      -tourist_app_development
   pull_request:
     branches:
-      - main
+      - tourist_app_development
+  workflow_dispatch:
 
 jobs:
   build:
