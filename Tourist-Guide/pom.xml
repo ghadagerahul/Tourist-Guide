@@ -11,7 +11,7 @@
 
     <!-- Modules (Child Projects) -->
     <modules>
-        <!-- <module>TouristGuide-Service</module>  -->
+       <module>TouristGuide-Service</module>
        <module>Tourist-Guide-UI</module>
     </modules>
 
