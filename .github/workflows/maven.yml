@@ -34,11 +34,11 @@ jobs:
 
 
     - name: Build with Maven
-      run: mvn -f /pom.xml clean install
+      run: mvn --f /pom.xml clean install
 
 
     - name: Package WAR file
-      run: mvn -f /pom.xml package
+      run: mvn --f /pom.xml package
 
     - name: Upload WAR artifact
       uses: actions/upload-artifact@v4
