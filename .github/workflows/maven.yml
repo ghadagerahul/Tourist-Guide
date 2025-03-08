@@ -1,32 +1,5 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
 
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Java CI with Maven
-
-on:
-  push:
-    branches: [ "tourist_app_development" ]
-  pull_request:
-    branches: [ "tourist_app_development" ]
-
-ChatGPT
-
-You said:
-Set up JDK 17
-Cache not found for keys: setup-java-Linux-x64-maven-036bae7f00bdc9b98d7e045d094cba504c8efe7e1c39e6296574376eab9e6bcb
-
-
-Getting this error on github action build with maven job run
-ChatGPT said:
-The error you're seeing indicates that GitHub Actions is attempting to use a cached version of the JDK or Maven dependencies, but the cache key does not match any existing cache. This usually happens if the cache has not been created yet or if the dependencies have changed, resulting in a different cache key. Here's how to set up JDK 17 correctly in your GitHub Actions workflow with Maven and caching:
-
-Example java-maven.yml GitHub Actions Workflow
-name: Build with Maven
+name: Maven CI/CD Pipeline
 
 on:
   push:
@@ -41,23 +14,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout source code
       uses: actions/checkout@v3
 
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
-        distribution: 'temurin' # or 'zulu', 'adopt', 'openjdk'
+        distribution: 'temurin'
         java-version: '17'
-        cache: 'maven'
 
-    - name: Set up cache for Maven dependencies
+    - name: Cache Maven packages
       uses: actions/cache@v3
       with:
         path: ~/.m2/repository
-        key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
-          maven-${{ runner.os }}-
+          ${{ runner.os }}-maven-
 
     - name: Build with Maven
       run: mvn clean install
+
+    - name: Package WAR file
+      run: mvn package
+
+    - name: Upload WAR artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: tourist-guide-war
+        path: target/*.war
+        
