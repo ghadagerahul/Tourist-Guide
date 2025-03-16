@@ -31,17 +31,21 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
+    - name: Change to the correct directory
+      run: cd Tourist-Guide
 
     - name: Build with Maven
-      run: mvn clean install
-
+      run: |
+        cd Tourist-Guide
+        mvn clean install
 
     - name: Package WAR file
-      run: mvn package
+      run: |
+        cd Tourist-Guide
+        mvn package
 
     - name: Upload WAR artifact
       uses: actions/upload-artifact@v4
       with:
         name: tourist-guide-war
-        path: Tourist-Guide/Tourist-Guide/target/*.war
-        
+        path: Tourist-Guide/target/*.war
