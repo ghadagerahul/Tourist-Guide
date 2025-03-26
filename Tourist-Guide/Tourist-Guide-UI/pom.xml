@@ -54,15 +54,17 @@
 				</executions>
 			</plugin>
 
+
+
 			<plugin>
     <artifactId>maven-war-plugin</artifactId>
     <version>3.3.1</version>  
     <configuration>
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <warName>AppWar</warName>
+        <warName>tourist-guide</warName>
         <webResources>
             <resource>
-                <directory>src/main/touristguideapp/AppWar/</directory>
+                <directory>src/main/touristguideapp/tourist-guide/</directory>
             </resource>
         </webResources>
     </configuration>
