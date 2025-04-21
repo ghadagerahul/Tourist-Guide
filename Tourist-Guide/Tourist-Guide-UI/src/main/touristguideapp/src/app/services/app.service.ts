@@ -11,9 +11,11 @@ export class AppService {
 
   constructor(private http: HttpClient) {}
 
+  private appUrl="http://localhost:8181/app";
+
   registerUser(form: any): Observable<any> {
 
-    const url = 'http://localhost:8181/app/register';
+    const url = this.appUrl+'/register';
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -27,4 +29,25 @@ export class AppService {
         })
       );
   }
+
+
+
+  LoginUserToPortal(form: any): Observable<any> {
+    console.log("INSIDE LoginUser: " + form);
+    const url = this.appUrl + '/login';
+    console.log("url: " + url);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post<any>(url, form.value, { headers })
+      .pipe(
+        catchError(error => {
+          console.error("Error during registration:", error);
+          return of({ success: false, message: 'Registration failed' });
+        })
+      );
+  }
+
+
 }

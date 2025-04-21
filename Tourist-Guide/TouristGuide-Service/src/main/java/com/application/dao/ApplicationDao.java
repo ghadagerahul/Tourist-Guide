@@ -10,5 +10,7 @@ public interface ApplicationDao {
 	public boolean createUser(User user);
 
 	public boolean updateUser(User user, String id);
+	
+	public User getUser(String userName);
 
 }

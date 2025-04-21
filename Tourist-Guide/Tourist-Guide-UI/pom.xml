@@ -64,7 +64,7 @@
         <warName>tourist-guide</warName>
         <webResources>
             <resource>
-                <directory>src/main/touristguideapp/tourist-guide/</directory>
+                <directory>src/main/touristguideapp/tourist-guide/browser/</directory>
             </resource>
         </webResources>
     </configuration>

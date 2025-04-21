@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AppService } from '../../services/app.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registeration-page',
@@ -11,12 +12,14 @@ import { CommonModule } from '@angular/common';
 })
 export class RegisterationPageComponent implements OnInit {
 
+
   registrationForm!: FormGroup;
 
   constructor(private appservice: AppService,
-    private fb: FormBuilder
-  ) { 
-    
+    private fb: FormBuilder,
+    private router:Router
+  ) {
+
   }
 
 
@@ -46,7 +49,6 @@ export class RegisterationPageComponent implements OnInit {
   })
 
   onSubmitData() {
-    
     this.registrationForm.value.firstName = this.registrationForm1.firstName;
     this.registrationForm.value.lastName = this.registrationForm1.lastName;
     this.registrationForm.value.email = this.registrationForm1.email;
@@ -55,20 +57,18 @@ export class RegisterationPageComponent implements OnInit {
     this.registrationForm.value.password = this.registrationForm1.password;
 
     console.log(this.registrationForm.value)
-
-    if (this.registrationForm.valid) {
-
+    //if (this.registrationForm.valid) {
       this.appservice.registerUser(this.registrationForm).subscribe(data => {
         console.log("#### Final op: " + data);
         this.registrationForm.reset();
-
       })
-
-
-
-    }
-
-
+   // }
+   this.registrationForm.reset();
   }
+
+
+  goToLoginPage() {
+    this.router.navigate(['/login'])
+    }
 
 }
