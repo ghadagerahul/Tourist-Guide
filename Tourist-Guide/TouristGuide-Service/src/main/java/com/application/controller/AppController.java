@@ -77,6 +77,7 @@ public class AppController<flag> {
 		return ResponseEntity.ok("Login successful.");
 	}
 
+	// http://localhost:8080/TouristGuide-Service/app/registerTest
 	@GetMapping("/registerTest")
 	public String registerUser1() {
 
