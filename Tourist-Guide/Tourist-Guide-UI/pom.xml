@@ -22,7 +22,7 @@
 				<configuration>
 					<nodeVersion>v22.14.0</nodeVersion>
 					<npmVersion>10.9.2</npmVersion>
-					<workingDirectory>src/main/touristguideapp</workingDirectory>
+					<workingDirectory>src/main/touristguideuiapp</workingDirectory>
 				</configuration>
 				<executions>
 					<execution>
@@ -64,7 +64,7 @@
         <warName>tourist-guide</warName>
         <webResources>
             <resource>
-                <directory>src/main/touristguideapp/tourist-guide/browser/</directory>
+                <directory>src/main/touristguideuiapp/tourist-guide/browser/</directory>
             </resource>
         </webResources>
     </configuration>

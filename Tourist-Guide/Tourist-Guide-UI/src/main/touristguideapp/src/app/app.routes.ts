@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { RegisterationPageComponent } from './components/registeration-page/registeration-page.component';
 
 export const routes: Routes = [
+    { path: '' , component:LoginPageComponent},
     { path: 'login', component: LoginPageComponent },
     { path: 'register', component: RegisterationPageComponent }
 ];
